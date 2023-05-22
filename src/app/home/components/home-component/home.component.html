@@ -1,0 +1,27 @@
+<div class="border p-3">
+    <div class="col-md-12 mb-3">
+        <h1>{{'Popular Films'}}</h1>
+        <div class="d-flex my-3 carousel-custom">
+            <div *ngFor="let film of films" (click)="openFilmDetails(film)" 
+                class="card m-3" style="height: 335px; min-width: 180px;">
+                <img *ngIf="film.imgUrl" [src]="film.imgUrl" alt="Poster Error" class="poster">
+                <div *ngIf="!film.imgUrl" class="poster no-poster"></div>
+                <div class="p-2 mt-1 h-100 d-flex justify-content-center align-items-center">
+                    <span [title]="film.name" class="primary-text">{{truncName(film.name)}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <h1>{{'Popular People'}}</h1>
+        <div class="my-3 carousel-custom">
+            <div *ngFor="let person of people" (click)="openPersonDetails(person)" class="card m-3" style="height: 335px; min-width: 180px;">
+                <img *ngIf="person.imgUrl" [src]="person.imgUrl" alt="Poster Error" class="poster">
+                <div *ngIf="!person.imgUrl" class="poster no-poster"></div>
+                <div class="p-2 mt-1 h-100 d-flex justify-content-center align-items-center">
+                    <span class="primary-text">{{person.name}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

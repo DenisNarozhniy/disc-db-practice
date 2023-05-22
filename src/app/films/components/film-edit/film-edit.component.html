@@ -1,0 +1,92 @@
+<div class="modal-header">
+    <h2 *ngIf="!film">{{'Add New Film'}}</h2>
+    <h2 *ngIf="film">{{'Edit ' + film.name}}</h2>
+    <button (click)="close()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body" [formGroup]="mainForm">
+    <div class="form-group d-flex">
+        <div class="col-md-6 pe-3">
+            <div class="input-control">
+                <label class="required" for="">Film Name</label>
+                <input type="text" formControlName="name">
+            </div>
+        </div>
+        <div class="col-md-4 px-3">
+            <div class="input-control">
+                <label for="">Poster Url</label>
+                <input type="text" formControlName="imgUrl">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="input-control">
+                <label for="">Duration (minutes)</label>
+                <input type="number" formControlName="minutes">
+            </div>
+        </div>
+    </div>
+    <div class="form-group d-flex">
+        <div class="input-control col-md-6 pe-3">
+            <label for="">Synopsis</label>
+            <div class="" style="height: 80%;">
+                <textarea rows="3" formControlName="synopsis"></textarea>
+            </div>
+        </div>
+        <div class="input-control col-md-6 ps-3">
+            <div class="mb-3">
+                <label for="">Director</label>
+                <ng-multiselect-dropdown
+                    [settings]="languageSelectSettings"
+                    [data]="directors" formControlName="director"></ng-multiselect-dropdown>
+            </div>
+            <div class="mb-3">
+                <label for="">Genres</label>
+                <ng-multiselect-dropdown
+                    [settings]="genresSelectSettings" 
+                    [data]="genres" formControlName="genres"></ng-multiselect-dropdown>
+            </div>
+            <div class="">
+                <label for="">Actors</label>
+                <ng-multiselect-dropdown
+                    [settings]="actorsSelectSettings"
+                    [data]="actors" formControlName="actors"></ng-multiselect-dropdown>
+            </div>
+        </div>
+    </div>
+    <div class="form-group d-flex">
+        <div class="col-md-3">
+            <label for="">Original Language</label>
+            <ng-multiselect-dropdown
+                [settings]="languageSelectSettings"
+                [data]="languages" formControlName="originalLanguage"></ng-multiselect-dropdown>
+        </div>
+        <div class="col-md-3 px-3">
+            <label for="">Translated Language</label>
+            <ng-multiselect-dropdown
+                [settings]="languageSelectSettings"
+                [data]="languages" formControlName="translatedLanguage"></ng-multiselect-dropdown>
+        </div>
+        <div class="col-md-3 px-3">
+            <label for="">Translation Type</label>
+            <ng-multiselect-dropdown
+                [settings]="languageSelectSettings"
+                [data]="translationTypes" formControlName="translateType"></ng-multiselect-dropdown>
+        </div>
+        <div class="col-md-3">
+            <label for="">Date</label>
+            <input type="text" class="form-control mt-1"
+                bsDatepicker formControlName="date" placement="right" [bsConfig]="bsConfig">
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="col-md-2">
+        <button [disabled]="mainForm.invalid" (click)="save()" class="btn btn-primary">
+            
+            <span *ngIf="!film">{{'Add'}}</span>
+            <span *ngIf="film">{{'Edit'}}</span>
+        </button>
+    </div>
+    <div class="col-md-2">
+        <button (click)="close()" class="btn btn-primary-outline">{{'Cancel'}}</button>
+    </div>
+</div>

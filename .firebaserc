@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "disc-db-70ad0": {
+      "hosting": {
+        "disc-db-front": [
+          "disc-db-70ad0"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "disc-db-70ad0"
+  }
+}

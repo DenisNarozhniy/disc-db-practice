@@ -1,0 +1,26 @@
+<div class="col-md-12 d-flex">
+    <div class="col-md-2 py-3">
+        <div class="border p-2" [formGroup]="mainForm">
+            <div class="input-control">
+                <input type="text" placeholder="Name" formControlName="name">
+            </div>
+            <div class="input-control">
+                <ng-multiselect-dropdown formControlName="profession"
+                    [placeholder]="'Profession'"
+                    [settings]="professionSelectSettings" 
+                    [data]="professions" formControlName="profession"></ng-multiselect-dropdown>
+            </div>
+            <button (click)="searchPeople()" class="btn btn-primary">{{'Search'}}</button>
+        </div>
+        <button (click)="addPerson()" class="btn btn-primary-outline mt-5">{{'Add New Person'}}</button>
+    </div>
+    <div class="col-md-10 d-flex py-3 pe-3" style="flex-wrap: wrap;">
+        <div *ngFor="let person of people" class="card mx-3 mb-3" (click)="openDetails(person)"  style="height: 335px;">
+            <img *ngIf="person.imgUrl" [src]="person.imgUrl" alt="Poster Error" class="poster">
+            <div *ngIf="!person.imgUrl" class="poster no-poster"></div>
+            <div class="p-2 mt-1 h-100 d-flex align-items-center justify-content-center">
+                <span class="primary-text">{{person.name}}</span>
+            </div>
+        </div>
+    </div>
+</div>

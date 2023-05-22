@@ -1,0 +1,56 @@
+<div class="border p-3">
+    <div class="col-md-12 d-flex">
+        <div class="col-md-3 pe-3">
+            <div class="">
+                <img *ngIf="film.imgUrl" [src]="film.imgUrl" alt="Poster Error" class="w-100 h-100">
+            </div>
+            <div *ngIf="!film.imgUrl" class="big-poster no-poster"></div>
+        </div>
+        <div class="col-md-9 ps-3 d-flex" style="flex-direction: column;">
+            <div class="d-flex justify-content-between">
+                <h1>{{film?.name}}</h1>
+                <div class="d-flex">
+                    <button (click)="goBack()" class="btn btn-primary-outline me-3" 
+                        title="Back" style="width: 50px;">
+                        <i class="bi bi-arrow-90deg-down"></i>
+                    </button>
+                    <button (click)="editFilm()" class="btn btn-primary me-3" 
+                        title="Edit" style="width: 50px;">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button (click)="deleteFilm()" style="width: 50px;" title="Delete"
+                        class="btn btn-danger-outline d-flex align-items-center justify-content-center" >
+                        <i class="bi bi-trash" style="font-size: 24px;"></i>
+                    </button>
+                </div>
+            </div>
+            <span class="secondary-text">{{firstLine}}</span>
+            <span class="secondary-text">{{secondLine}}</span>
+            <div class="mt-5">
+                <span style="font-size: 20px;">{{film.synopsis}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" [ngClass]="{'d-flex': !isTablet}">
+        <div *ngIf="film.director" class="mt-3"
+            [ngClass]="{
+                'col-md-12': isTablet, 
+                'col-md-3': !isTablet
+            }">
+            <h2>{{'Director: '}}</h2>
+            <div class="carousel-custom">
+                <actor-carousel-item [personId]="film.director"></actor-carousel-item>
+            </div>
+        </div>
+        <div *ngIf="film?.actors?.length" 
+            [ngClass]="{
+                'col-md-12': !film.director && !isTablet, 
+                'col-md-9': !!film.director && !isTablet
+            }" class="mt-3">
+            <h2>{{'Actors: '}}</h2>
+            <div class="carousel-custom">
+                <actor-carousel-item *ngFor="let actor of film.actors" [personId]="actor"></actor-carousel-item>
+            </div>
+        </div>
+    </div>
+</div>

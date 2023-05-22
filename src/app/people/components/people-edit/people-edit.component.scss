@@ -1,0 +1,13 @@
+::ng-deep {
+    // .dropdown-btn {
+    //     height: 40px;
+    // }
+    .selected-item {
+        margin-bottom: 0 !important;
+    }
+    .multiselect-dropdown {
+        .dropdown-list {
+            overflow: hidden;
+        }
+    } 
+}

@@ -1,1 +1,175 @@
 /* You can add global styles to this file, and also import other style files */
+@import './assets/variables';
+
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    outline: none;
+}
+
+@media only screen and (max-width: 767px) {
+    .carousel-custom {
+        max-width: 400px;
+    }
+  }
+
+.carousel-custom {
+    display: flex;
+    overflow-y: auto;
+}
+.carousel-custom::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.carousel-custom::-webkit-scrollbar-track {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+
+.carousel-custom::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+.carousel-custom::-webkit-scrollbar-thumb:hover {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,1); 
+}
+
+.required::after {
+    content: "*";
+    color: red;
+    margin-left: 4px;
+}
+.input-control {
+    margin-bottom: 1rem;
+}
+.h-100 {
+    height: 100% !important;
+}
+.btn {
+    width: 100%;
+    border: none;
+    height: 50px;
+    border-radius: 30px;
+    font-size: 1.2em;
+    line-height: 1;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.btn-primary {
+    background-color: $lightBlue;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: $darkBlue;
+    color: white;
+}
+.btn-primary-outline {
+    background-color: white;
+    border: 1px solid $lightBlue;
+    color: $lightBlue;
+}
+.btn-primary-outline:hover {
+    background-color: $darkBlue;
+    color: white;
+}
+.btn-danger-outline {
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+}
+.btn-danger-outline:hover {
+    background-color: darkred;
+    color: white;
+}
+
+input {
+    // width: calc(100% - 5px);
+    width: 100%;
+    height: 30px;
+    font-size: 18px;
+    border: 1px solid $lightGrey;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+textarea {
+    height: 100%;
+    width: 100%;
+    font-size: 18px;
+    border: 1px solid $lightGrey;
+    border-radius: 5px;
+}
+
+select {
+    width: 100%;
+    height: 30px;
+    font-size: 18px;
+    border: 1px solid $lightGrey;
+    border-radius: 5px;
+}
+
+input:focus, select:focus {
+    border: 1px solid $lightBlue;
+}
+
+.primary-text {
+    font-weight: 600;
+    font-size: 18px;
+}
+.secondary-text {
+    color: grey
+}
+.big-poster {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    min-height: 500px;
+    max-height: 500px;
+    background-color: $lightGrey;
+    min-width: 333.3px;
+    max-width: 333.3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.poster {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    min-height: 267px;
+    max-height: 267px;
+    background-color: $lightGrey;
+    width: 178px;
+}
+.no-poster::after {
+    content: "No Poster";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.card {
+    width: 180px;
+    height: 363px;
+    border: 1px solid $lightGrey;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: 0.2s;
+    cursor: pointer;
+}
+.card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.border {
+    border: 1px solid $lightGrey;
+}
+
+.d-flex {display: flex}
+
+.align-items-center {align-items: center}
+.justify-content-center {justify-content: center}

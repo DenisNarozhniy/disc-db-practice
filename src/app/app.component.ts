@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    template: `<router-outlet></router-outlet>`
 })
-export class AppComponent {
-  title = 'disc-db-front';
+export class AppComponent implements OnInit {
+    title = 'disc-db-front';
+
+    constructor (
+    ) {}
+
+    ngOnInit(): void {
+    }
 }

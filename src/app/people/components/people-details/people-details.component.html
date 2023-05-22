@@ -1,0 +1,52 @@
+<div class="border p-3">
+    <div class="col-md-12 d-flex">
+        <div class="col-md-3 pe-3">
+            <div class="">
+                <img *ngIf="person.imgUrl" [src]="person.imgUrl" alt="Poster Error" class="w-100 h-100 mb-3">
+            </div>
+            <div *ngIf="!person.imgUrl" class="big-poster no-poster mb-3"></div>
+            <div *ngIf="person.profession" class="d-flex align-items-center mb-3">
+                <div class="primary-text me-2">{{'Profession: '}}</div>
+                <div  class="secondary-text">{{person.profession}}</div>
+            </div>
+            <div *ngIf="person.age" class="d-flex align-items-center mb-3">
+                <div class="primary-text me-2">{{'Age: '}}</div>
+                <div  class="secondary-text">{{person.age}}</div>
+            </div>
+            <div *ngIf="person.birthPlace">
+                <div class="primary-text me-2">{{'Birth Place: '}}</div>
+                <div  class="secondary-text">{{person.birthPlace}}</div>
+            </div>
+
+        </div>
+        <div class="col-md-9 ps-3 d-flex" style="flex-direction: column;">
+            <div class="d-flex justify-content-between">
+                <h1>{{person?.name}}</h1>
+                <div class="d-flex">
+                    <button (click)="goBack()" class="btn btn-primary-outline me-3" 
+                        title="Back" style="width: 50px;">
+                        <i class="bi bi-arrow-90deg-down"></i>
+                    </button>
+                    <button (click)="editPerson()" class="btn btn-primary me-3" 
+                        title="Edit" style="width: 50px;">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button (click)="deletePerson()" style="width: 50px;" title="Delete"
+                        class="btn btn-danger-outline d-flex align-items-center justify-content-center" >
+                        <i class="bi bi-trash" style="font-size: 24px;"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mt-5 d-flex" style="flex-direction: column;">
+                <h3>{{'Biography'}}</h3>
+                <span class="secondary-text" style="font-size: 18px;">{{person.bio}}</span>
+            </div>
+            <div *ngIf="actorFilms.length" class="mt-5">
+               <h3>{{'Films'}}</h3> 
+                <div class="carousel-custom">
+                    <film-carousel-item *ngFor="let film of actorFilms" [film]="film"></film-carousel-item>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

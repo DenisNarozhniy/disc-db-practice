@@ -1,0 +1,27 @@
+<div class="col-md-12 d-flex">
+    <div class="col-md-2 py-3">
+        <div class="border p-2" [formGroup]="mainForm">
+            <div class="input-control">
+                <input type="text" placeholder="Name" formControlName="name">
+            </div>
+            <div class="input-control">
+                <ng-multiselect-dropdown formControlName="genres"
+                    [placeholder]="'Genres'"
+                    [settings]="genresSelectSettings" 
+                    [data]="genres" formControlName="genres"></ng-multiselect-dropdown>
+            </div>
+            <button (click)="searchFilms()" class="btn btn-primary">{{'Search'}}</button>
+        </div>
+        <button (click)="addFilm()" class="btn btn-primary-outline mt-5">{{'Add New Film'}}</button>
+    </div>
+    <div class="col-md-10 d-flex py-3 pe-3" style="flex-wrap: wrap;">
+        <div *ngFor="let film of films" class="card mx-3 mb-3" (click)="openDetails(film)">
+            <img *ngIf="film.imgUrl" [src]="film.imgUrl" alt="Poster Error" class="poster">
+            <div *ngIf="!film.imgUrl" class="poster no-poster"></div>
+            <div class="p-2 mt-1 h-100" style="display: flex; flex-direction: column;">
+                <span [title]="film.name" class="primary-text">{{truncName(film.name)}}</span>
+                <span class="secondary-text">{{film.date | date:'MMM dd, YYYY'}}</span>
+            </div>
+        </div>
+    </div>
+</div>

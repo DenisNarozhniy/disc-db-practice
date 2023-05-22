@@ -1,0 +1,9 @@
+<ng-container *ngIf="film">
+    <div (click)="openDetails()" class="card m-3" style="height: 335px;">
+        <img *ngIf="film.imgUrl" [src]="film.imgUrl" alt="Poster Error" class="poster">
+        <div *ngIf="!film.imgUrl" class="poster no-poster"></div>
+        <div class="p-2 mt-1 h-100 d-flex justify-content-center align-items-center">
+            <span [title]="film.name" class="primary-text">{{truncName(film.name)}}</span>
+        </div>
+    </div>
+</ng-container>

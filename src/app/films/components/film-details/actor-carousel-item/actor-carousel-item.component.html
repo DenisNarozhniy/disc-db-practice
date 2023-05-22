@@ -1,0 +1,9 @@
+<ng-container *ngIf="person">
+    <div (click)="openDetails()" class="card m-3" style="height: 335px;">
+        <img *ngIf="person.imgUrl" [src]="person.imgUrl" alt="Poster Error" class="poster">
+        <div *ngIf="!person.imgUrl" class="poster no-poster"></div>
+        <div class="p-2 mt-1 h-100 d-flex justify-content-center align-items-center">
+            <span class="primary-text">{{person.name}}</span>
+        </div>
+    </div>
+</ng-container>

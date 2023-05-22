@@ -1,0 +1,57 @@
+<div class="modal-header">
+    <h2 *ngIf="!person">{{'Add New Person'}}</h2>
+    <h2 *ngIf="person">{{'Edit ' + person.name}}</h2>
+    <button (click)="close()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body" [formGroup]="mainForm">
+    <div class="form-group d-flex">
+        <div class="col-md-6 pe-3">
+            <div class="input-control">
+                <label class="required" for="">Person Name</label>
+                <input type="text" formControlName="name">
+            </div>
+        </div>
+        <div class="col-md-6 ps-3">
+            <div class="input-control">
+                <label for="">Photo Url</label>
+                <input type="text" formControlName="imgUrl">
+            </div>
+        </div>
+    </div>
+    <div class="form-group d-flex">
+        <div class="input-control col-md-12 pe-3">
+            <label for="">Bio</label>
+            <div class="" style="height: 80%;">
+                <textarea rows="3" formControlName="bio"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="form-group d-flex">
+        <div class="col-md-6">
+            <label for="">Birth Place</label>
+            <input type="text" formControlName="birthPlace">
+        </div>
+        <div class="col-md-4 px-3">
+            <label for="">Profession</label>
+            <ng-multiselect-dropdown
+                [settings]="professionsSelectSettings"
+                [data]="professions" formControlName="profession"></ng-multiselect-dropdown>
+        </div>
+        <div class="col-md-2 px-3">
+            <label for="">Age</label>
+            <input type="number" formControlName="age">
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="col-md-2">
+        <button [disabled]="mainForm.invalid" (click)="save()" class="btn btn-primary">
+            
+            <span *ngIf="!person">{{'Add'}}</span>
+            <span *ngIf="person">{{'Edit'}}</span>
+        </button>
+    </div>
+    <div class="col-md-2">
+        <button (click)="close()" class="btn btn-primary-outline">{{'Cancel'}}</button>
+    </div>
+</div>
