@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from "@angular/core";
-import { Subject, takeUntil} from "rxjs";
+import { Subject, takeUntil, tap } from "rxjs";
 import { Router } from "@angular/router";
 import { PeopleService } from "src/app/shared/services/people-service/people.service";
 import { Person } from "src/app/shared/services/people-service/person.interfaces";
@@ -25,13 +25,18 @@ export class ActorCarouselItemComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.setPersonDetails();
+    }
+
+    setPersonDetails() {
         this.peopleService.getPersonById(this.personId)
-            .pipe(takeUntil(this.unsubscribe))
-            .subscribe((person) => {
+        .pipe(
+            takeUntil(this.unsubscribe),
+            tap((person) => {
                 this.person = person;
                 this.cd.detectChanges();
             })
-
+        ).subscribe()
     }
 
     openDetails() {

@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject, OnDestroy, OnInit } from "@angular/core";
+import { Component, HostListener, Inject, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { BsModalService } from "ngx-bootstrap/modal";
 import { Observable, Subject, filter, takeUntil} from "rxjs";
 import { Film } from "src/app/shared/services/films-service/films.interfaces";
@@ -9,6 +9,7 @@ import { FilmEditComponent } from "../film-edit/film-edit.component";
 import { ConfirmComponent } from "src/app/shared/confirm/confirm.component";
 import { Router } from "@angular/router";
 import { PeopleService } from "src/app/shared/services/people-service/people.service";
+import { ActorCarouselItemComponent } from "./actor-carousel-item/actor-carousel-item.component";
 
 @Component({
     selector: "film-details",
@@ -20,6 +21,7 @@ import { PeopleService } from "src/app/shared/services/people-service/people.ser
 export class FilmDetailsComponent implements OnInit, OnDestroy {
 
     private readonly unsubscribe: Subject<void> = new Subject();
+    @ViewChild('director') directorComp: ActorCarouselItemComponent;
     public innerWidth: any;
 
     public genres = [];
@@ -54,19 +56,30 @@ export class FilmDetailsComponent implements OnInit, OnDestroy {
         this.firstLine = '';
         this.secondLine = '';
 
-        if(film.date) this.firstLine += film.date + ' / ';
+        if(film.date) 
+            this.firstLine += film.date + ' / ';
 
-        if(film.genres.length) this.firstLine += film.genres.join(', ') + ' / ';
+        if(film.genres.length) 
+            this.firstLine += film.genres.join(', ') + ' / ';
         
         const hours = Math.floor(film.minutes / 60);
         this.firstLine += `${hours} h ${film.minutes - hours * 60} m`;
         
 
-        if(film.originalLanguage) this.secondLine += 'Original: ' + Languages.find(l => l.id === film.originalLanguage).text  + ' / ';
+        if(film.originalLanguage) 
+            this.secondLine += 'Original: ' + Languages.find(l => l.id === film.originalLanguage).text  + ' / ';
 
-        if(film.translateType) this.secondLine += film.translateType + ' / ';
+        if(film.translateType) 
+            this.secondLine += film.translateType + ' / ';
 
-        if(film.translatedLanguage) this.secondLine += 'Traslated: ' + Languages.find(l => l.id === film.translatedLanguage).text;
+        if(film.translatedLanguage) 
+            this.secondLine += 'Traslated: ' + Languages.find(l => l.id === film.translatedLanguage).text;
+
+        if(this.directorComp) {
+            setTimeout(() => {
+                this.directorComp.setPersonDetails();
+            }, 0)
+        }
     }
 
     ngOnInit(): void {

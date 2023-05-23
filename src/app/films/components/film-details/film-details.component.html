@@ -39,7 +39,7 @@
             }">
             <h2>{{'Director: '}}</h2>
             <div class="carousel-custom">
-                <actor-carousel-item [personId]="film.director"></actor-carousel-item>
+                <actor-carousel-item #director [personId]="film.director"></actor-carousel-item>
             </div>
         </div>
         <div *ngIf="film?.actors?.length" 
